@@ -10,11 +10,12 @@ public class DoMath {
 		//Tests retained to check code. Uncomment to cross-reference
 		
 		//System.out.println(Calculate.square(11));
-		//System.out.println(Calculate.round2(-12345.678931702151523015327923501));
-		//System.out.println(Calculate.exponent(10, 1));
+		//System.out.println(Calculate.round2(12345.679));
+		//System.out.println(Calculate.exponent(-10, 3));
 		//System.out.println(Calculate.factorial(5));
 		//System.out.println(Calculate.isPrime(3));
 		//System.out.println(Calculate.gcf(125, 35));
 		//System.out.println(Calculate.sqrt(612));
+		//System.out.println(Calculate.quadform(1, 8, 15));
 	}
 }

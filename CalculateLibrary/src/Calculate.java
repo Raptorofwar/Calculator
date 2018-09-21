@@ -55,9 +55,12 @@ public class Calculate {
 	//part 2 - methods with conditionals
 	
 	public static boolean isDivisibleBy(int numerator, int denominator) {
+		if(denominator==0) {
+			throw new IllegalArgumentException("Divide by 0");
+		}
 		if(numerator%denominator==0) {
 			return true;
-		}else{
+		}else {
 			return false;
 		}
 	}
@@ -65,7 +68,7 @@ public class Calculate {
 	public static double absValue(double absolute) {
 		if (absolute<0) {
 			return absolute*-1;
-		}else{
+		}else {
 			return absolute;
 		}
 	}
@@ -73,7 +76,7 @@ public class Calculate {
 	public static double max(double x, double y) {
 		if (x>y) {
 			return x;
-		}else{
+		}else {
 			return y;
 		}
 	}
@@ -82,12 +85,12 @@ public class Calculate {
 		double max;
 		if (x>y) {
 			max=x;
-		}else{
+		}else {
 			max=y;
 		}
 		if (max>z) {
 			return max;
-		}else{
+		}else {
 			return z;
 		}
 	}
@@ -98,14 +101,26 @@ public class Calculate {
 
 		if(x<y) {
 			return x;
-		}else{
+		}else {
+			return y;
+		}
+	}
+	
+	public static double min(double x, double y) {
+		
+		//Overloading! woooooo
+
+		if(x<y) {
+			return x;
+		}else {
 			return y;
 		}
 	}
 	
 	public static double round2(double round) {
 		
-		//OK FOR SOME REASON %.01 DOES WEIRD STUFF, SO NOW I JUST MULTIPLY BY 100 LIKE SOME PLEB.
+		//OK FOR SOME REASON %.01 DOES WEIRD STUFF
+		//SO NOW I JUST MULTIPLY BY 100 LIKE SOME PLEB.
 		
 		double rounded=round*100;
 		boolean isNegative=false;
@@ -115,26 +130,29 @@ public class Calculate {
 		}
 		if (rounded%1>=0.5) {
 			rounded+=(1-rounded%1);
-		}else{
+		}else {
 			rounded-=(rounded%1);
 		}
 		if (!isNegative) {
 			return rounded/100;
-		}else{
-			return rounded*=-100;
+		}else {
+			return rounded/=-100;
 		}
 	}
 	
 	//part 3: methods that call methods that have loops that do things
 	
 	public static double exponent(double base, int power) {
+		if(power<1) {
+			throw new IllegalArgumentException("Negative power: "+power);
+		}
 		double exponented=base;
 		if(power==1) {
 		}else if(power>1) {
 			for(int i=1;i<power;i++) {
 				exponented*=base;
 			}
-		}else{
+		}else {
 			for(int i=1;i>power;i--) {
 				exponented/=base;
 			}
@@ -143,6 +161,9 @@ public class Calculate {
 	}
 	
 	public static int factorial(int x) {
+		if(x<0) {
+			throw new IllegalArgumentException("Negative factorial: "+x);
+		}
 		int factorialed=1;
 		for(int i=1;i<=x;i++) {
 			factorialed*=i;
@@ -156,7 +177,7 @@ public class Calculate {
 			if(isDivisibleBy(x,i)) {
 				prime=false;
 				break;
-			}else{
+			}else {
 				prime=true;
 			}
 		}
@@ -176,10 +197,34 @@ public class Calculate {
 	}
 	
 	public static double sqrt(double x) {
+		if(x<0) {
+			throw new IllegalArgumentException("Negative square root: "+x);
+		}
 		double guess=x/20;
 		while(absValue(x-square(guess)) >= 0.001){
 			guess-=((square(guess)-x)/(2*guess));
 		}
 		return round2(guess);
+	}
+	
+	// part 4: Exceptions, or lines of code saying no
+	
+	public static String quadform(int a, int b, int c) {
+		double square=square(b)-4*a*c;
+		double squareRoot;
+		if(square<0) {
+			return "no real roots";
+		}
+		squareRoot=sqrt(square);
+		double plusRoot=((-b)+squareRoot)/(2*a);
+		double minusRoot=((-b)-squareRoot)/(2*a);
+		if(plusRoot!=minusRoot) {
+			double maxRoot=round2(max(plusRoot, minusRoot));
+			double minRoot=round2(min(plusRoot, minusRoot));
+			String roots=minRoot+" and "+maxRoot;
+			return roots;
+		}else {
+			return plusRoot+"";
+		}
 	}
 }
