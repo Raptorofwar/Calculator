@@ -7,54 +7,92 @@ public class Calculate {
 	
 	//part 0 - first method and connecting
 			
+	public static int square(int squareInput) {
+		
+		//squares input
+
+		return squareInput*squareInput;
+	}
+	
 	public static double square(double squareInput) {
 		
-		//Ya mind if I change this to double? I want to use this for sqrt.
-
+		//same as above except doubles
+		
 		return squareInput*squareInput;
 	}
 	
 	//part one - moar methods
 	
 	public static int cube(int cubeInput) {
+		
+		//cubes an input
+		
 		return cubeInput*cubeInput*cubeInput;
 	}
 	
 	public static double average(double avgOne, double avgTwo) {
+		
+		//averages 2 inputs
+		
 		return (avgOne+avgTwo)/2;
 	}
 	
 	public static double average (double avg1, double avg2, double avg3) {
+		
+		//averages 3 inputs
+		
 		return (avg1+avg2+avg3)/3;
 	}
 	
 	public static double toDegrees (double radian) {
+		
+		//converts radians to degrees
+		
 		return radian*180/3.14159;
 	}
 	
 	public static double toRadians (double degrees) {
+		
+		//converts degrees to radians
+		
 		return degrees*3.14159/180;
 	}
 	
 	public static double discriminant (double a, double b, double c) {
-		return b*b-4*a*c;
+		
+		//takes standard form abc, returns that little bit inside the square root
+		//in quadratic formula
+		
+		return square(b)-4*a*c;
 	}
 	
 	public static String toImproperFrac(int number, int numerator, int denominator) {
-		return (number*denominator)+numerator + " " + denominator;
+		
+		//converts mixed number to improper fraction
+		
+		return (number*denominator)+numerator+" "+denominator;
 	}
 	
 	public static String toMixedNum(int numerator, int denominator) {
+		
+		//converts improper fraction to mixed number
+		
 		return (numerator/denominator)+"_"+(numerator%denominator)+"/"+denominator;
 	}
 	
 	public static String foil(int a, int b, int c, int d, String x) {
+		
+		//put in factored form, get standard form
+		
 		return (a*c)+x+"^2 + "+(a*d+b*c)+x+" + "+(b*d);
 	}
 	
 	//part 2 - methods with conditionals
 	
 	public static boolean isDivisibleBy(int numerator, int denominator) {
+		
+		//tests if there's no remainder for a division
+		
 		if(denominator==0) {
 			throw new IllegalArgumentException("Divide by 0");
 		}
@@ -66,6 +104,22 @@ public class Calculate {
 	}
 	
 	public static double absValue(double absolute) {
+		
+		//returns absolute value of two doubles
+		
+		if (absolute<0) {
+			return absolute*-1;
+		}else {
+			return absolute;
+		}
+	}
+	
+	public static int absValue(int absolute) {
+		
+		//returns absolute values of two ints
+		//having methods that only work with ints and methods that only work with doubles
+		//is confusing as all ****
+		
 		if (absolute<0) {
 			return absolute*-1;
 		}else {
@@ -74,6 +128,9 @@ public class Calculate {
 	}
 	
 	public static double max(double x, double y) {
+		
+		//finds largest of two inputs
+		
 		if (x>y) {
 			return x;
 		}else {
@@ -82,6 +139,9 @@ public class Calculate {
 	}
 	
 	public static double max(double x, double y, double z) {
+		
+		//finds largest of three inputs
+		
 		double max;
 		if (x>y) {
 			max=x;
@@ -97,6 +157,8 @@ public class Calculate {
 		
 	public static int min(int x, int y) {
 		
+		//finds the smaller of two ints
+		
 		//WHY IS THIS ONE AN INT BUT THE ABOVE ARE DOUBLES?
 
 		if(x<y) {
@@ -108,6 +170,9 @@ public class Calculate {
 	
 	public static double min(double x, double y) {
 		
+		//copy of above method except for doubles, because reasons
+		//more importantly just to fix part 4
+		
 		//Overloading! woooooo
 
 		if(x<y) {
@@ -118,6 +183,8 @@ public class Calculate {
 	}
 	
 	public static double round2(double round) {
+		
+		//rounds input to hundredths place
 		
 		//OK FOR SOME REASON %.01 DOES WEIRD STUFF
 		//SO NOW I JUST MULTIPLY BY 100 LIKE SOME PLEB.
@@ -143,6 +210,9 @@ public class Calculate {
 	//part 3: methods that call methods that have loops that do things
 	
 	public static double exponent(double base, int power) {
+		
+		//returns base to power power
+		
 		if(power<1) {
 			throw new IllegalArgumentException("Negative power: "+power);
 		}
@@ -161,6 +231,9 @@ public class Calculate {
 	}
 	
 	public static int factorial(int x) {
+		
+		//input int, returns int*int-1*...*1
+		
 		if(x<0) {
 			throw new IllegalArgumentException("Negative factorial: "+x);
 		}
@@ -172,31 +245,40 @@ public class Calculate {
 	}
 	
 	public static boolean isPrime(int x) {
-		boolean prime=true;
+		
+		//tests if input int is prime
+		
 		for(int i=2;i<x;i++) {
 			if(isDivisibleBy(x,i)) {
-				prime=false;
-				break;
-			}else {
-				prime=true;
+				return true;
 			}
 		}
-		return prime;
+		return false;
 	}
 	
 	public static int gcf(int x, int y) {
-		int minMax=min(x,y);
-		int gcf=1;
-		for(int i=minMax;i>=1;i--) {
-			if(isDivisibleBy(x,i)&&isDivisibleBy(y,i)) {
-				gcf=i;
-				break;
-			}
+		
+		//input two ints, returns greatest common factor
+		
+		int placeholder=y;
+		int newx=x;
+		int newy=y;
+		while(newx!=0&&newy!=0) {
+			placeholder=newx%newy;
+			newx=newy;
+		 	newy=placeholder;
 		}
-		return gcf;
+		if(newx==0) {
+			 return absValue(newy);
+		 }else {
+			 return absValue(newx);
+		 }
 	}
 	
 	public static double sqrt(double x) {
+		
+		//input double, return sqrt of said double
+		
 		if(x<0) {
 			throw new IllegalArgumentException("Negative square root: "+x);
 		}
@@ -210,7 +292,11 @@ public class Calculate {
 	// part 4: Exceptions, or lines of code saying no
 	
 	public static String quadform(int a, int b, int c) {
-		double square=square(b)-4*a*c;
+		
+		//put in 3 ints a, b, and c, in accordance with quadratic formula
+		//returns a string listing roots (x for y=0)
+		
+		double square=discriminant(a,b,c);
 		double squareRoot;
 		if(square<0) {
 			return "no real roots";

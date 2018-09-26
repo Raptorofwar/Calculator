@@ -13,18 +13,16 @@ public class DoMath {
 		//System.out.println(Calculate.square(11));
 		
 		//Part 2 tests
-		//System.out.println(Calculate.round2(12345.679));
+		//System.out.println(Calculate.round2(-12345.675));
 		
 		//Part 3 tests
 		//System.out.println(Calculate.exponent(-10, 3));
 		//System.out.println(Calculate.factorial(5));
 		//System.out.println(Calculate.isPrime(3));
-		//System.out.println(Calculate.gcf(125, 35));
+		//System.out.println(Calculate.gcf(11, -121));
 		//System.out.println(Calculate.sqrt(612));
 		
 		//Part 4 tests
 		//System.out.println(Calculate.quadform(1, 8, 15));
-		
-		//Part 5 tests
 	}
 }
