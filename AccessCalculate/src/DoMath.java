@@ -1,5 +1,5 @@
 
-public class DoMath {
+public class DoMath{
 
 	//Author Jeffrey Liu
 	//9-6-2018
@@ -16,11 +16,11 @@ public class DoMath {
 		//System.out.println(Calculate.round2(-12345.675));
 		
 		//Part 3 tests
-		//System.out.println(Calculate.exponent(-10, 3));
+		//System.out.println(Calculate.exponent(-24, 36));
 		//System.out.println(Calculate.factorial(5));
 		//System.out.println(Calculate.isPrime(3));
 		//System.out.println(Calculate.gcf(11, -121));
-		//System.out.println(Calculate.sqrt(612));
+		//System.out.println(Calculate.sqrt(612));	
 		
 		//Part 4 tests
 		//System.out.println(Calculate.quadform(1, 8, 15));

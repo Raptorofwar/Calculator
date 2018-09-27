@@ -212,10 +212,6 @@ public class Calculate {
 	public static double exponent(double base, int power) {
 		
 		//returns base to power power
-		
-		if(power<1) {
-			throw new IllegalArgumentException("Negative power: "+power);
-		}
 		double exponented=base;
 		if(power==1) {
 		}else if(power>1) {
@@ -223,6 +219,9 @@ public class Calculate {
 				exponented*=base;
 			}
 		}else {
+			if(base<0) {
+				throw new IllegalArgumentException("Divide by 0");
+			}
 			for(int i=1;i>power;i--) {
 				exponented/=base;
 			}
